@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <title>Motivos de No Concesión</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header, .footer { text-align: center; font-weight: bold; }
+        .content { margin-top: 20px; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { border: 1px solid black; padding: 5px; text-align: left; }
+        .table th { background-color: #f2f2f2; }
+        .table td { font-size: 12px; }
+        .title { text-align: center; font-size: 18px; margin-bottom: 20px; }
+       
+        .title_main{
+            padding-bottom: 20px;
+        }
+
+        #customHeaderSec {
+            display: table;
+            width: 100%;
+            text-align: center;
+            border: none; /* Remove border around the table */
+        }
+
+        .header, .title, .footer {
+            display: table-cell;
+            padding: 10px;
+            vertical-align: middle;
+            text-align: center; /* Center-align content in each column */
+            border: none; /* Remove individual borders */
+            text-align: left; 
+        }
+        .title_main{
+            font-weight: bold;
+        }
+        .title{
+            padding-right: 50px !important;
+        }
+        .title_main{
+            padding-bottom: 30px !important;
+        }
+        .header{
+            padding-top: 30px !important;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="customHeaderSec" class="header_sec">
+        <div class="header">
+            <img src="assets/icon/logo.png" alt="Logo Icon" width="auto
+            " style="height: 50px;" />
+            <p>Comunidad de Madrid</p>
+        </div>
+        <div class="title">
+            <p class="title_main">Gestión Unificada de Ayudas</p>
+            <p>Motivos de No Concesión</p>
+        </div>
+        <div class="footer">
+            <p>[[${formattedDate}]]</p>
+        </div>
+    </div>
+    <div class="content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Tipo de Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="guayMotivos : ${guayMotivosList}">
+                    <td th:text="${guayMotivos.cdMotivo}"></td>
+                    <td th:text="${guayMotivos.dsMotivo}"></td>
+                    <td >
+                        <span th:switch="${guayMotivos.tpMotivo}">
+                            <span th:case="R">RENUNCIA</span>
+                            <span th:case="E">EXCLUSION</span>
+                            <span th:case="A">REPARO AUTOMATICO</span>
+                            <span th:case="D">DENEGACION</span>
+                            <span th:case="*">FIJO</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
